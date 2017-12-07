@@ -1,3 +1,7 @@
+.shadow label, .shadow h1 {
+    text-shadow: 1px 1px 2px white
+}
+
 .shadow:hover {
     & label, h1 {
         text-shadow: 1px 1px 2px white, 0 0 10px blue, 0 0 5px darkblue;
@@ -14,6 +18,25 @@
     transform: scale(1);
 }
 
-#output {
+strong {
     font-size: 3em;
+}
+
+.background {
+    background: url("House-money-chalkboard.jpg");
+    min-height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+body {
+    height: 100%;
+    position: inherit;
+    width: 100%;
+}
+
+html {
+    height: 100%;
 }
