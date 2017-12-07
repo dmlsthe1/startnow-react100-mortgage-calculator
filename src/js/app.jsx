@@ -11,7 +11,6 @@ export default class App extends React.Component {
     this.handleFocus = this.handleFocus.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.calculate = this.calculate.bind(this);
-    this.amortization = this.amortization.bind(this);
   }
   
   componentDidMount(){
@@ -40,15 +39,12 @@ export default class App extends React.Component {
       }
     }
   }
-  amortization(principalTotal, rate, numberMonths, monthlyPayments) {
-    
-  }
+  
   calculate() {
     let principalTotal = this.state.balance;
     let rate = this.state.rate / 1200;
     let numberMonths = this.state.term * 12;
     let monthlyPayments = (principalTotal * ((rate * Math.pow((1 + rate), numberMonths)) / (Math.pow((1 + rate), numberMonths) - 1)));
-    this.amortization(principalTotal, rate, numberMonths, monthlyPayments);
     let obj = {
       Amount: parseFloat(monthlyPayments),
       Interest: parseFloat((rate * principalTotal)),
