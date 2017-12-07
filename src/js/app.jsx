@@ -56,7 +56,6 @@ export default class App extends React.Component {
       obj.Payment = (i + 1);
       
       (i + 1) == numberMonths ? (obj.Payment = "Final Payment", obj.Amount = ( obj.nextInterest + obj.nextBalance)) : "";
-      //obj.Amount = (obj.Balance <= obj.Amount) ? (obj.Balance + (rate * obj.Balance)) : obj.Amount;
       
       tableContents.push(<tr key={i}>
         <td className="text-center">{obj.Payment}</td>
