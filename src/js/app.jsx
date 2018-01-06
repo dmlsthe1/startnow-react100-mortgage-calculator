@@ -55,22 +55,20 @@ export default class App extends React.Component {
     for (let i = 0; i < numberMonths ; i++){
       obj.Payment = (i + 1);
       
-      (i + 1) == numberMonths ? (obj.Payment = "Final Payment", obj.Amount = ( obj.nextInterest + obj.nextBalance)) : "";
-      
-      tableContents.push(<tr key={i}>
-        <td className="text-center">{obj.Payment}</td>
-        <td className="text-center">{obj.Amount.toFixed(2)}</td>
-        <td className="text-center">{obj.Interest.toFixed(2)}</td>
-        <td className="text-center">{obj.Principal.toFixed(2)}</td>
-        <td className="text-center">{obj.Balance.toFixed(2)}</td>
-      </tr>);
-      
-      obj.Interest =       (rate * obj.Balance);
-      obj.Principal =      (obj.Amount - obj.Interest);
-      obj.Balance =        (obj.Balance - obj.Principal);
-      obj.nextInterest =   (rate * obj.Balance);
-      obj.nextPrincipal =  (obj.Amount - obj.nextInterest);
-      obj.nextBalance =    (obj.Balance + obj.nextPrincipal);
+      if(i === 0){
+        tableContents.push(Object.assign({}, obj));
+        
+      } else {
+        obj.Interest =       (rate * obj.Balance);
+        obj.Principal =      (obj.Amount - obj.Interest);
+        obj.Balance =        (obj.Balance - obj.Principal);
+        if(i + 1 == numberMonths){
+          obj.Payment = "Final Payment";
+        }
+        tableContents.push(Object.assign({}, obj));
+
+      } 
+
     }
     this.setState({
       clicked: true,
@@ -133,7 +131,20 @@ export default class App extends React.Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {this.state.amortization}
+
+                      
+                      {this.state.amortization.map(function(obj, index){
+                        return (<tr key={index}>
+                          <td className="text-center">{obj.Payment}</td>
+                          <td className="text-center">{obj.Amount.toFixed(2)}</td>
+                          <td className="text-center">{obj.Interest.toFixed(2)}</td>
+                          <td className="text-center">{obj.Principal.toFixed(2)}</td>
+                          <td className="text-center">{obj.Balance.toFixed(2)}</td>
+                        </tr>)
+                      })}
+
+
+
                     </tbody>
                   </table>
                 </center> :
